@@ -1,0 +1,26 @@
+<div class="container">
+  <h2>Taringa</h2>
+
+  <div>
+    <img class="static-image" src="assets/bella-vista.jpg" alt="imagen estatica">
+  </div>
+<div class="formulario">
+  <form (ngSubmit)="addComment(commentInput.value); commentInput.value = ''">
+    <input type="text" #commentInput placeholder="Escribe un comentario" required>
+    <button type="submit">Agregar comentario</button>
+  </form>
+  <ul>
+    <li *ngFor="let comentario of comentarios; let i = index">
+      <div *ngIf="!comentario.editando"> 
+        <ul> <li>{{ comentario.texto }}</li> </ul>
+        <button (click)="deleteComment(i)">Borrar</button>
+        <button (click)="editComment(i)">Editar</button>
+      </div>
+      <div *ngIf="comentario.editando">
+        <input type="text" [(ngModel)]="comentario.texto">
+        <button (click)="saveComment(i)">Guardar</button>
+      </div>
+    </li>
+  </ul>
+</div>
+</div>
